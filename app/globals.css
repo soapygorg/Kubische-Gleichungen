@@ -1,0 +1,359 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1c2330;
+  --muted: #5d6677;
+  --border: #dfe3ea;
+  --accent: #2563eb;
+  --accent-soft: #e8f0fe;
+  --danger: #c0262d;
+  --notice-bg: #fff7e0;
+  --notice-border: #f0d78a;
+
+  --plot-bg: #ffffff;
+  --plot-grid: #e6e9ef;
+  --plot-axis: #6b7280;
+  --plot-text: #374151;
+  --plot-curve: #2563eb;
+  --plot-root: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11151c;
+    --card: #1a202a;
+    --text: #e6e9ef;
+    --muted: #9aa4b5;
+    --border: #2b3340;
+    --accent: #6ea0ff;
+    --accent-soft: #22304d;
+    --danger: #ff7b80;
+    --notice-bg: #3a3320;
+    --notice-border: #6b5d28;
+
+    --plot-bg: #141a23;
+    --plot-grid: #262e3b;
+    --plot-axis: #8c97aa;
+    --plot-text: #c3cad6;
+    --plot-curve: #6ea0ff;
+    --plot-root: #ff6b6b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero h1 {
+  margin: 0 0 4px;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-width: 0;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.card h3,
+.card h4 {
+  margin: 14px 0 6px;
+  font-size: 1rem;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 6px 0;
+}
+
+code {
+  background: var(--accent-soft);
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: 0.88em;
+}
+
+/* Eingabe */
+.coeff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+@media (max-width: 640px) {
+  .coeff-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.coeff {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.coeff-label {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+input[type='text'],
+input[type='number'] {
+  width: 100%;
+  padding: 9px 11px;
+  font-size: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.coeff.has-error input {
+  border-color: var(--danger);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.82rem;
+}
+
+.preview {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 6px 14px 8px;
+  margin: 10px 0 14px;
+}
+
+.preview-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip,
+.plot-toolbar button {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.chip:hover,
+.plot-toolbar button:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* KaTeX */
+.tex-display {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+.tex-display .katex-display {
+  margin: 0.4em 0;
+}
+
+.roots {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.roots li {
+  border-bottom: 1px solid var(--border);
+  padding: 2px 0;
+}
+
+.roots li:last-child {
+  border-bottom: none;
+}
+
+.notice {
+  background: var(--notice-bg);
+  border: 1px solid var(--notice-border);
+  border-radius: 9px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 0.93rem;
+}
+
+.way {
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.way summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.step {
+  margin-top: 6px;
+}
+
+.source,
+.footer {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 4px;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Plot */
+.plot-wrap {
+  width: 100%;
+}
+
+.plot-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.plot-readout {
+  margin-left: auto;
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.plot-canvas {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.plot-canvas:active {
+  cursor: grabbing;
+}
+
+.hint {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Regler */
+.sliders {
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 4px;
+}
+
+.slider-row {
+  display: grid;
+  grid-template-columns: 36px minmax(120px, 1fr) repeat(3, 84px);
+  gap: 10px;
+  align-items: end;
+  margin: 10px 0;
+}
+
+@media (max-width: 640px) {
+  .slider-row {
+    grid-template-columns: 30px 1fr 1fr 1fr;
+  }
+  .slider-row input[type='range'] {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+  .slider-row .mini {
+    grid-row: 2;
+  }
+}
+
+.slider-name {
+  font-size: 1.1rem;
+  align-self: center;
+}
+
+.slider-row input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+  align-self: center;
+}
+
+.mini {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: var(--muted);
+  gap: 2px;
+}
+
+.mini input {
+  padding: 5px 7px;
+  font-size: 0.88rem;
+}
