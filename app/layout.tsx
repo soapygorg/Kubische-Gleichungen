@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Kubische Gleichungen lösen',
   description:
     'Löst kubische Gleichungen analytisch (Cardanische Formeln), auch mit Parametern, zeigt Nullstellen, Linearfaktoren und einen interaktiven Plot.',
+  verification: { google: '<meta name="google-site-verification" content="rWwLyKTT7UnVsSXZ-2wdem8mX6Yv6fveGhz_LbW156E" />',},
 };
 
 export const viewport: Viewport = {
